@@ -11,6 +11,12 @@ App = {
     console.log(App.todoList)
     web3.eth.defaultAccount = web3.eth.accounts[0]
   },
+  createTask: async() => {
+    App.setLoading(true)
+    const content = $('#newTask').val()
+    await App.todoList.createTask(content)
+    window.location.reload()
+  },
 
   renderTasks: async() => {
     const taskCount = await App.todoList.taskCount()
