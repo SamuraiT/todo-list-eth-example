@@ -31,7 +31,7 @@ App = {
       $newTaskTemplate.find('input')
                       .prop('name', taskId)
                       .prop('checked', taskCompleted)
-    // .on('click', App.toggleCompleted)
+                      .on('click', App.toggleCompleted)
       if (taskCompleted) {
         $('#completedTaskList').append($newTaskTemplate)
       } else {
@@ -41,6 +41,13 @@ App = {
       // Show the task
       $newTaskTemplate.show()
     }
+
+  },
+  toggleCompleted: async(e) => {
+    App.setLoading(true)
+    const taskId = e.target.name
+    await App.todoList.toggleCompleted(taskId)
+    window.location.reload()
 
   },
   loadAccount: async() => {
